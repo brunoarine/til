@@ -1,0 +1,10 @@
+#+TITLE: Arch Linux repositories stopping getting updates
+#+DATE: 2023-04-24 14:49:54
+
+Today I learned that your Arch Linux installation can suddenly stop getting updates, and you won't be notified about it.
+
+I found it weird that my box wasn't getting any updates for weeks, even though I run =pacman -Syu= on a weekly basis.
+But I was using just one repo mirror, and it stopped getting updates.
+
+To prevent this situation, have more than one mirror configured.
+Check mirror status at https://archlinux.org/mirrors/status/ and run =reflector-simple= to add more mirrors.

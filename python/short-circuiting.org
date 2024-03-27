@@ -1,0 +1,26 @@
+#+TITLE: About short-circuiting in Python
+#+DATE: 2023-06-23 12:33:09
+
+Today I learned that it's possible to short-circuit boolean operations in Python.
+
+Example:
+
+| Operation | Result                          | Notes                                                                      |
+|-----------+---------------------------------+----------------------------------------------------------------------------|
+| X or Y    | If X is =False=, then Y, else X | Y is executed only if X is =False=. Else, if X is =True=, X is the result. |
+| X and Y   | If X is =False=, then X, else Y | Y is executed only if X is =True=. Else, if X is =False=, X is the result. |
+
+I noticed this behavior while checking YOLOv8's source code.
+In a certain point, the program picks whatever variable is not =None= like this:
+
+#+begin_src python
+return {
+    "train": train_set,
+    "val": val_set or test_set,
+    "test": test_set or val_set,
+    "nc": nc,
+    "names": names,
+}
+#+end_src
+
+Not sure why I never thought of it before, since short-circuiting works in most (if not all) languages.
