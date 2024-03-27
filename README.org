@@ -1,0 +1,5 @@
+#+title: Today I Learned
+
+A collection of brief notes on things that I learn everyday.
+
+Inspired by [Simon Willison's idea](https://github.com/simonw/til).
