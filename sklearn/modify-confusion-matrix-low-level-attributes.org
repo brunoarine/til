@@ -1,0 +1,23 @@
+#+TITLE: How to modify Scikit-Learn's ConfusionMatrix low-level attributes
+#+DATE: 2024-03-27
+
+Today I learned how to modify low-level components of a =ConfusionMatrixDisplay= object, i.e. fiddling directly with =fig= and =ax=.
+I needed to do this after trying to plot a gigantic matrix of nearly 100 labels.
+I searched the documentation for ways to change the =figsize= value, but found out that the =ConfusionMatrixDisplay= implementation does not allow custom plot parameters to be passed.
+
+This is the workaround suggested on Stack Overflow:
+
+#+begin_src python
+import numpy as np
+from sklearn.metrics import ConfusionMatrixDisplay, confusion_matrix
+import matplotlib.pyplot as plt
+
+cm = confusion_matrix(np.arange(25), np.arange(25))
+cmp = ConfusionMatrixDisplay(cm, display_labels=np.arange(25))
+fig, ax = plt.subplots(figsize=(10,10))
+cmp.plot(ax=ax)
+#+end_src
+
+* References
+
+- [[https://stackoverflow.com/questions/66483409/adjust-size-of-confusionmatrixdisplay-scikitlearn][python - Adjust size of ConfusionMatrixDisplay (ScikitLearn) - Stack Overflow]]

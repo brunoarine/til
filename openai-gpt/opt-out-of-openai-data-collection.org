@@ -1,0 +1,21 @@
+#+TITLE: How to opt out of OpenAI's data collection
+#+DATE: 2023-06-19 12:33:08
+
+Today I learned it is possible to sign a form and request OpenAI not to store your API calls.
+
+#+HUGO: more
+
+By design, all consumer-grade products created by OpenAI may use your prompts as material to further enhanced their models.
+That's the reason why it's strongly advised not to disclose any personal information when using ChatGPT, for instance.
+
+Their API is subject to a different policy.
+As stated in their [[https://help.openai.com/en/articles/7039943-data-usage-for-consumer-services-faq][FAQ]],
+
+#+begin_src
+OpenAI will not use data submitted by customers via our API to train or improve our models, unless you explicitly decide to share your data with us for this purpose.
+#+end_src
+
+You have to fill in a form to opt in, so there's no danger of it happening accidentally.
+
+But despite their API usage being a bit safer in terms of privacy, they still keep your prompts and outputs for 30 days to prevent abuse, according to them.
+If you want your data not to be stored for that period, you'll have to fill in the opt out form in the [[https://help.openai.com/en/articles/7039943-data-usage-for-consumer-services-faq][same page]].

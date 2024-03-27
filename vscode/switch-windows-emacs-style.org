@@ -1,0 +1,20 @@
+#+TITLE: How to switch between terminal and editor on VSCode Emacs-style
+#+DATE: 2023-07-18 15:51:23
+
+My Emacs muscle memory is too stubborn, so that I always find myself pressing =C-x o= to switch between terminal and editor window.
+The pain ended today.
+To switch focus on VSCode with =C-X o=, add the following to your JSON config:
+
+#+begin_src json
+{
+    "key": "ctrl+x o",
+    "command": "workbench.action.terminal.focus"
+},
+{
+    "key": "ctrl+x o",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "terminalFocus"
+}
+#+end_src
+
+Note: This only switches focus between terminal and editor. Switching focus to other elements in the screen will require another keybinding.

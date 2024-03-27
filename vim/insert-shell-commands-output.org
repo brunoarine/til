@@ -1,0 +1,27 @@
+#+TITLE: How to insert shell commands output in Vim
+#+DATE: 2023-06-19 12:33:07
+
+Today I learned that you can grab the output of any shell command and insert it directly into Vim.
+
+#+HUGO: more
+
+To do that, type:
+
+#+begin_src
+:r! <command>
+#+end_src
+
+The command above is a shorthand for =:read !<command>=.
+
+I was interested in this feature after reading about how to interact with LLMs using the command line using [[https://simonwillison.net/2023/May/18/cli-tools-for-llms/][Simon Willison's CLI tools]].
+
+The reverse path is also possible (sending selected text in visual mode to an external command). For this, use the following (ugly and unpractical) command:
+
+#+begin_src
+:'<, '> w !<command>
+#+end_src
+
+Breaking it down:
+
+- ='<, '>= tells Vim to use the entire selection while in visual mode.
+- =w= sends the text somewhere else---in this case, it will pipe the visual content to =!<command>=. It could be a filename though.

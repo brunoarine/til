@@ -1,0 +1,18 @@
+#+TITLE: How to make Org-mode tags stay at the end of the line
+#+DATE: 2023-06-11 12:33:03
+
+Today I learned how to make Org-mode tags stay at the end of a line in a document, as if they had a =float: right= CSS property.
+
+#+HUGO: more
+
+The variable responsible for this behavior is =org-tags-column=, so that if you want to add an extra space between an Org heading and the list of tags, set it to a positive number other than zero:
+
+#+begin_src elisp
+(setq org-tags-column 20)
+#+end_src
+
+But if you want to make it float to the right, use a negative number. I've noticed -100 works nice for big screens.
+
+#+begin_src elisp
+(setq org-tags-column -100)
+#+end_src

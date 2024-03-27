@@ -1,0 +1,6 @@
+#+TITLE: How to restart the Jupyter kernel of a Databricks notebook the right way
+#+DATE: 2023-06-09 12:32:54
+
+Today I learned that you don't need to restart the whole cluster just to refresh your Jupyter kernel.
+
+Instead, click on the cluster dropdown in the upper-left and click =Detach & Re-attach=. This will detach the notebook and, upon reattachment, a new kernel will be launched.

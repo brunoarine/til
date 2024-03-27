@@ -1,0 +1,16 @@
+#+TITLE: Sargable queries in SQL
+#+DATE: 2023-08-10 16:07:53
+
+"Sargable" is short for "Search ARGument ABLE." In SQL, a sargable query is one that can efficiently use indexes to search for rows in a database table. Making queries sargable often involves ensuring that operations on columns (especially in WHERE clauses) allow for efficient use of indexes rather than requiring a full table scan. Non-sargable operations can prevent the SQL optimizer from using indexes, leading to slower query performance.
+
+Example of a non-sargable query:
+
+#+begin_src sql
+SELECT * FROM users WHERE YEAR(date_of_birth) = 1990;
+#+end_src
+
+Example of a sargable query:
+
+#+begin_src sql
+SELECT * FROM users WHERE age = 33;
+#+end_src

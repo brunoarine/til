@@ -1,0 +1,17 @@
+#+TITLE: How to open an org file with headings collapsed
+#+DATE: 2023-01-02 17:59:01
+
+When Emacs first visits an Org file, the global state is set to =showeverything=, i.e., all file content is visible6. This can be configured through the variable org-startup-folded, or on a per-file basis by adding one of the following lines anywhere in the buffer:
+
+#+begin_src elisp
+#+STARTUP: overview
+#+STARTUP: content
+#+STARTUP: showall
+#+STARTUP: show2levels
+#+STARTUP: show3levels
+#+STARTUP: show4levels
+#+STARTUP: show5levels
+#+STARTUP: showeverything
+#+end_src
+
+Furthermore, any entries with a ‘VISIBILITY’ property (see Properties and Columns) get their visibility adapted accordingly. Allowed values for this property are ‘folded’, ‘children’, ‘content’, and ‘all’.

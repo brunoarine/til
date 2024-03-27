@@ -1,0 +1,9 @@
+#+TITLE: How to bypass MacOS app verification
+#+DATE: 2023-08-29 14:55:05
+
+If you can't open applications downloaded from the Internet, and the concerning option in =Privacy and Security= is grayed out, here's a quick way to bypass Apple's verification.
+Type in your terminal:
+
+#+begin_src shell
+sudo spctl --master-disable
+#+end_src

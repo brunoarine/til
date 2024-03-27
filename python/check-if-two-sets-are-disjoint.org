@@ -1,0 +1,24 @@
+#+TITLE: How to check if two sets are disjoint in Python
+#+DATE: 2023-06-12 12:33:04
+
+Today I learned that Python has built-in functions to assess whether two sets are disjoints (i.e. have no elements in common).
+
+#+begin_src python :results output :exports both :session yes
+set1 = {1, 2, 3, 4}
+set2 = {3, 4, 5, 6}
+
+print(set1.isdisjoint(set2))
+#+end_src
+
+#+RESULTS:
+: False
+
+Alternatively, you can use the =intersection()= function to find the points of intersection between two sets:
+
+#+begin_src python :results output :exports both :session yes
+intersects = set1.intersection(set2)
+print(intersects)
+#+end_src
+
+#+RESULTS:
+: {3, 4}

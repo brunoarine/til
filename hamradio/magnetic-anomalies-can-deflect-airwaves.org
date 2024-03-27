@@ -1,0 +1,15 @@
+#+TITLE: Magnetic anomalies can deflect airwaves
+#+DATE: 2023-04-06 14:41:23
+
+Today I learned that due to magnetic anomalies, airwave propagation to Alaska doesn't peak at a straight line.
+The bearing deviation can be as large as 100°.
+
+I noticed this effect myself when trying to make a QSO with a station in Alaska via FT8, but could only succeed when my antenna was not exactly directed at Alaska.
+
+* References
+
+[[https://www.qsl.net/kl7j/prop.html][Alaska Radio Propagation]]
+
+#+begin_quote
+The daytime F region frequencies peak not at the magnetic equator, but around 15 to 20 degrees north and south of it. This is called the equatorial anomaly. At night, frequencies reach a minimum around 60 degrees latitude north [South Central AK] and south of the geomagnetic equator. This is called the mid-latitude trough. Large tilts can occur in the vicinity of these phenomena which may lead to variations in the range of sky waves that have reflection points nearby. The ionosphere becomes quite variable in the polar regions due to the variable energy input from the solar wind. The near-vertical magnetic field funnels particles into this region and changes in energy input can trigger atmospheric waves and dramatic changes in the electron profile over short time scales.
+#+end_quote

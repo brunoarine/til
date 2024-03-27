@@ -1,0 +1,6 @@
+#+TITLE: How to render emojis as traditional unicode symbols
+#+DATE: 2023-07-25 11:42:34
+
+Today I learned it's possible to render emojis differently. Take the Heavy Black Heart unicode character (=U+2764=). If you append =U+FE0F=, it will look like the heart emoji ❤️ (which some browsers do by default nowadays).
+
+But if you want to force the rendering of the unicode symbol instead, add =U+FE0E= to it, and it will be rendered like ❤︎.

@@ -1,0 +1,16 @@
+#+TITLE: How to record and play a macro on Doom Emacs
+#+DATE: 2023-07-25 10:04:58
+
+Today I learned how to record a macro on Doom Emacs and play it as many times as you want.
+
+First, press =q <letter>= (or =M-x evil-record-macro RET <letter>=). This will start recording the macro at register =<letter>=.
+
+Then, do everything you want to do, and when done, press =q= to quit recording mode.
+
+To replay the macro you've just stored in the =<letter>= register, press =@ <letter>= (or =M-x evil-execute-macro RET <letter>=). Personally, when I don't want to overthink about which register to use, I just hit =q q= and then =Q=, which replays the last stored macro.
+
+If you want to repeat the macro `N` times though, you have to prepend the replay commands with the universal argument (prefix).
+Vanilla Emacs binds the prefix to =C-u=.
+Doom Emacs binds it to =SPC u=.
+
+So, if you want to execute the last recorded macro twice, press =SPC u 2 Q=.

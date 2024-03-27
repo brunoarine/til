@@ -1,0 +1,16 @@
+#+TITLE: How smoke detectors actually work
+#+DATE: 2023-07-07 14:21:52
+
+I've always had the wrong idea of how smoke detectors worked.
+
+Smoke detectors have two electrically charged plates and a radioactive source.
+The radioactive source ionizes the air, making current flow.
+
+When smoke penetrates the device, the attenuation disrupts the current flow, firing the alarm.
+
+[[file:2023-07-07_14-32-54_640px-CNX_Chem_21_05_SmokeAlarm.png]]
+
+But one detail was missing: how exactly the smoke disrupts that flow??
+
+I assumed it was because the smoke inserted caused attenuation.
+But today I learned that the smoke particles attach themselves to the charged ions, which hinders their movement and decreases the current, which in turn triggers the alarm.

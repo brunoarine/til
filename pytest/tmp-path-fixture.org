@@ -1,0 +1,19 @@
+#+TITLE: pytest and the tmp_path fixture
+#+DATE: 2023-06-27 12:33:10
+
+Today I learned that you don't need to import temp file or directory generators, nor create them yourself, when you're testing a code with =pytest=.
+
+All you have to do is use the =tmp_path= fixture, and =pytest= will take care of everything. Example:
+
+#+begin_src python
+def test_create_file(tmp_path):
+    d = tmp_path / "sub"
+    d.mkdir()
+    p = d / "hello.txt"
+    p.write_text(CONTENT)
+    assert p.read_text() == CONTENT
+    assert len(list(tmp_path.iterdir())) == 1
+    assert 0
+#+end_src
+
+I learned this while writing unit tests for the [[https://github.com/brunoarine/findlike][findlike]] tool.

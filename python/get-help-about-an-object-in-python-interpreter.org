@@ -1,0 +1,33 @@
+#+TITLE: How to get help about an object in the Python interpreter
+#+DATE: 2023-07-07 15:48:02
+
+Today I learned how to get the signature, docstring, and everything you need to know about how to use an object. Just append a =?=. Example:
+
+#+begin_src
+Signature: processor.tokenizer(text: 'str') -> 'list[str]'
+Docstring:
+Run the tokenization and post-processing.
+This method should be called by the similarity algorithms.
+File:      ~/projects/findlike/findlike/preprocessing.py
+Type:      method
+#+end_src
+
+Appending a double question-mark (=??=) will also output the code.
+
+#+begin_src
+Signature: processor.tokenizer(text: 'str') -> 'list[str]'
+Source:
+    def tokenizer(self, text: str) -> list[str]:
+        """Run the tokenization and post-processing.
+        This method should be called by the similarity algorithms.
+        """
+        tokens = self._tokenize(text)
+        stemmized_tokens = self._stemmize(tokens)
+        return stemmized_tokens
+File:      ~/projects/findlike/findlike/preprocessing.py
+Type:      method
+#+end_src
+
+* References
+
+- [[https://jakevdp.github.io/PythonDataScienceHandbook/01.01-help-and-documentation.html][Help and Documentation in IPython | Python Data Science Handbook]]

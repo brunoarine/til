@@ -1,0 +1,17 @@
+#+TITLE: How to emulate Doom Emacs + Swiper search on VSCode
+#+DATE: 2023-07-18 16:10:37
+
+The instructions below consider that you are using the [[https://marketplace.visualstudio.com/items?itemName=asvetliakov.vscode-neovim][Neovim Extension for VSCode]].
+Different extensions may require some adjustments.
+
+1. Install the [[https://marketplace.visualstudio.com/items?itemName=wenhoujx.swiper][Swiper addon for VSCode]]
+2. Add the following to your keybindings JSON file:
+
+
+#+begin_src json
+{
+    "command": "swiper.swiper",
+    "key": "space s b",
+    "when": "editorTextFocus && neovim.mode != insert",
+}
+#+end_src

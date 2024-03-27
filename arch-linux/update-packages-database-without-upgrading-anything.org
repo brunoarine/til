@@ -1,0 +1,12 @@
+#+TITLE: How to update Arch Linux's packages database without upgrading anything
+#+DATE: 2023-07-15 16:37:17
+
+Oftentimes our local repository goes out of sync, and you can't install anything unless you update =pacman='s database.
+
+One way to do this without upgrading any package is typing =pacman -Sy= or =pacman -Syy=.
+
+- =-S= tells pacman you want to synchronize packages. In other words, it's used for installing packages.
+- =-y= will refresh (sync) all of your package lists, ensuring you have the latest version of each package available for download and installation.
+- =-yy= forces a refresh of all package lists, even if they are considered to be up to date. This can be helpful if a mirror has not correctly updated or there is a local issue with the package database.
+
+Use =-yy= sparingly though, since it has the potential to cause a huge load on the servers.

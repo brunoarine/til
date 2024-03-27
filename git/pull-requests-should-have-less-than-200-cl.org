@@ -1,0 +1,11 @@
+#+TITLE: Pull requests should have less than 200 changed lines
+#+DATE: 2023-01-05 12:15:56
+
+According to a joint study involving Smartbear Inc. and Cisco, the developers' capacity to find bugs in a pull request drops exponentially with the quantity of lines of code under review.
+
+In practice, pull requests spanning 200 to 400 lines of code take 60 to 90 minutes to complete, and yield 90% to 70% defect discovery rate.
+
+* References
+
+- [[https://smartbear.com/learn/code-review/best-practices-for-peer-code-review/][Best Practices for Code Review | SmartBear]]
+- [[id:c2acbe6d-b7e6-4249-aaa8-3700e67e9540][Dias, H. (2018) The anatomy of a perfect pull request]]

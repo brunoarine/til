@@ -1,0 +1,8 @@
+#+TITLE: Narrowing to a subtree (and un-narrowing it later) in Emacs
+#+DATE: 2023-06-19 12:33:09
+
+Today I learned that it's possible to make Emacs narrow down the buffer to just the subtree (i.e. the "heading") you are working on, so that only that region becomes visible to you.
+
+The command responsible for this behavior is =org-narrow-to-subtree= (Doom Emacs: =SPC m s n=)
+
+To "un-narrow" it, the command is =widen= (Doom Emacs: =SPC m s N=)

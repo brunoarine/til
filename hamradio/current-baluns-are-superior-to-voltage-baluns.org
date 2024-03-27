@@ -1,0 +1,11 @@
+#+TITLE:  Current baluns are superior to voltage baluns in almost every scenario
+#+DATE: 2023-04-25 14:54:38
+
+Current baluns and voltage baluns have similar performance to symmetrical antennas like horizontal dipoles and yagis. However, due to capacitive effects in the vicinity of the antenna, a dipole may not always be "balanced". For that and other reasons, it's preferred to use a current balun rather than voltage one since it works even when the antenna is not perfectly balanced. (Also, current baluns are easier to test.)
+
+* References
+
+- [[https://oh1tv.fi/why%20baluns.pdf][Why baluns? Pekka Ketonen]]
+- [[https://owenduffy.net/balun/concept/cm/index.htm][Baluns in antenna systems]]
+- [[http://www.arrl.org/files/file/History/History%20of%20QST%20Volume%201%20-%20Technology/AntComp1-Lewallen(1).pdf][ARRL - Baluns: What they do and how they do it]]
+- [[https://www.dxengineering.com/techarticles/balunsandfeedlinechokes/baluns-choosing-the-correct-balun][Baluns: Choosing the Correct Balun]]

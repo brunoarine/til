@@ -1,0 +1,9 @@
+#+TITLE: How to move a repo as a sub-directory of another repo while preserving the commits
+#+DATE: 2022-03-12 11:39:36
+
+To merge a Repo B into Repo A as a subfolder, run this command inside Repo A:
+#+begin_src shell
+git subtree add -P $prefix $repo $rev
+#+end_src
+
+Set =prefix= to the name of the subdirectory, =repo= to the clone URL of Repo B, and =rev= to the revision of Repo B you want (HEAD if latest). This will take the history of Repo B and merge it with Repo A, along with an additional merge commit.

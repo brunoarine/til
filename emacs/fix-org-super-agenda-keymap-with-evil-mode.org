@@ -1,0 +1,16 @@
+#+TITLE: How to fix Emacs org-super-agenda keymap with evil-mode on
+#+DATE: 2023-07-12 17:03:34
+
+=org-super-agenda= default's config is incompatible with Doom Emacs keybindings.
+When we move the cursor to a date-containing line in the timegrid, trying to move past it will inevitably open the interactive calendar.
+
+To avoid this behavior, add the following to your Emacs config file:
+
+#+begin_src elisp
+(use-package! org-super-agenda
+  :after org-agenda
+  :init
+  (org-super-agenda-mode)
+  :config
+  (setq org-super-agenda-header-map (make-sparse-keymap)))
+#+end_src

@@ -1,0 +1,6 @@
+#+TITLE: The D-layer is what impacts the 20m band the most
+#+DATE: 2023-04-19 14:48:02
+
+At least according to this picture:
+
+[[file:Screenshot_2023-04-19_17-16-05.jpg]]

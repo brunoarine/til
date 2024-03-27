@@ -1,0 +1,4 @@
+#+TITLE: Water affects antennas resonant frequency
+#+DATE: 2023-04-07 14:46:34
+
+Rain can heavily affect an antenna's resonant frequency. Today it rained, and my horizontal dipole that was adjusted for 28.4 MHz was resonant at 26.9 MHz.

@@ -1,0 +1,39 @@
+#+TITLE: How do Bloom filters work?
+#+DATE: 2023-06-21 22:33:59
+
+In a conversation with Hugh, today I learned about the Bloom filter---a statistical algorithm that tells whether a sample likely belongs to a group, or does not belong to it at all.
+
+The algorithm is employed in several big projects, most noticeably [[https://redis.io/docs/data-types/probabilistic/bloom-filter/][Redis]] and the word vectors model [[https://github.com/explosion/floret][floret]].
+
+* How do Bloom filters work?
+
+Imagine you have a huge table, and you'd like to check whether a certain sample belongs to it.
+To check the sample membership, you'll have to check, row by row, whether the sample is equal to the value in that row.
+Thus, membership checking is a `\mathcal{O}(n)` operation, i.e. time complexity grows linearly in relation to the number of members in the set.
+
+Alternatively, imagine you had calculated a hash for every sample after they were added to the set.
+
+A hashing function is any function capable of converting a string or a number into another number using a set of rules.
+For this thought experiment, suppose our hashing function works by taking the last letter from a word and attributing a number to each, so that =A = 1=, =B = 2=.
+
+#+CAPTION: Our simple hashing function.
+[[file:names_hash.png]]
+
+Now imagine you have a sheet of paper with the numbers ranging from 1 to 26, representing the letters in the alphabet. numbers from 0 to 9.
+If a hash ends in 0, you'll tick the zero square. If it ends in 1, you tick the square representing one, and so on.
+If the square is already ticked, leave it like this.
+
+Intuitively, we see that if a hashed sample ends in a number that has not been ticked, it's absolutely certain that this sample doesn't belong to our set (after all, not ticks were made!)
+In case the hash produced a number that had already been ticked.
+
+This strategy can save a lot of time.
+
+
+* Questions
+
+** What kind of hashing functions should be used?
+
+They have to be simple and fast to compute to keep the bloom filter usable.
+   The output distribution must also be uniform to avoid possible collisions.
+
+   TUrns out the Murmur3 family of cryptographic functions has the best trade-off between speed and uniformity.

@@ -1,0 +1,15 @@
+#+TITLE: Jumping to symbol definition and more in VSCode
+#+DATE: 2023-06-17 12:33:06
+
+
+Today I learned that VSCode has some nifty ways to navigate through your codebase.
+
+Press =Ctrl + P= to search project files by name.
+If you append =:=, it will jump to line number.
+If you append =@=, it will jump to symbol definition.
+
+Press =CTRL + SHIFT + O= to jump to a symbol in the current file.
+
+Press =CTRL + T= to jump to any function, variable or class in any file in the project.
+
+If you are using Vim keybindings, press =[[= to jump to the start of the function block.

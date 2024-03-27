@@ -1,0 +1,38 @@
+#+TITLE: How to Access a Mount Point on Databricks
+#+DATE: 2023-06-09 12:33:01
+
+
+Today I learned how to mount an Azure blob on Databricks.
+
+#+HUGO: more
+
+Databricks offers a variety of ways to attach storage points onto your notebooks.
+To do that, the platform configures each cluster with a FUSE mount, which they call Databricks File System (DBFS).
+
+Let's use an Azure storage blob as example. If you want to mount it somewhere in your cluster, use the method in the built-in module =dbutils= inside your notebook:
+
+#+begin_src python
+CONTAINER_NAME = "<container name>"
+STORAGE_ACCOUNT = "<storage account>"
+MOUNT_POINT = "/mnt/mount_point"
+SAS_TOKEN = "<your SAS token>"
+
+extra_configs = {
+    f"fs.azure.sas.{CONTAINER_NAME}.{STORAGE_ACCOUNT}.blob.core.windows.net": SAS_TOKEN
+}
+
+dbutils.fs.mount(
+    source=f"wasbs://{CONTAINER_NAME}@{STORAGE_ACCOUNT}.blob.core.windows.net",
+    mount_point=MOUNT_POINT,
+    extra_configs=extra_configs,
+)
+#+end_src
+
+Once mounted, you can access your mount point by prepending the path with =/dbfs=. E.g.:
+
+#+begin_src python
+import os
+
+res = os.listdir("/dbfs" + MOUNT_PATH)
+print(res)
+#+end_src
