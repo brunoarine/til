@@ -2,4 +2,4 @@
 
 A collection of brief notes on things that I learn everyday.
 
-Inspired by [Simon Willison's idea](https://github.com/simonw/til).
+Inspired by [[https://github.com/simonw/til][Simon Willison's idea]].
