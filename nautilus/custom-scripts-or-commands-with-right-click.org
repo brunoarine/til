@@ -1,0 +1,4 @@
+#+title: Custom Scripts Or Commands With Right Click
+
+- Copy your script in the folder ~/.local/share/nautilus/scripts/
+- Make sure it's executable.
