@@ -1,0 +1,29 @@
+#+title: Use Snapper With Btrfs
+
+* Preparation
+
+Boot through a live image and mount your disk on /mnt, for instance. Add the following submodules by typing =btrfs submodule create /mnt/@submodule=. It's just like creating a directory.
+
+NAME         MOUNTPOINT     TYPE
+[main]       /              mainvolume
+@opt          /opt           subvolume
+@tmp          /tmp           subvolume
+@var          /var           subvolume
+@usr-local    /usr/local     subvolume
+@snapshots    /.snapshots    subvolume
+
+- /opt :: Avoid deleting third-party programs during rollback.
+- /tmp :: Nothing here will be kept in a snapshot anyway.
+- /var :: Variable data, logs, and temporary caches. Better keep them alone. Also, copy-on-write will be disabled here.
+
+Move data normally to these folders, if needed.
+
+* Installing and configuring Snapper
+
+https://www.dwarmstrong.org/btrfs-snapshots-rollbacks/
+
+* Checking disk usage by snapshots
+
+#+begin_src shell
+btrfs filesystem du -s /.snapshots/
+#+end_src
