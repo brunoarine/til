@@ -1,0 +1,23 @@
+#+title: Copy A Private Key To Another Machine
+
+
+Rather than copying the ~/.gnupg folder, you can create an export of your secret keys and then import on the new install, e.g.
+
+#+begin_src
+
+$ gpg --export-secret-keys --output mykeys
+
+#+end_src
+
+Then on the new system:
+
+#+begin_src
+
+$ gpg --import mykeys
+
+#+end_src
+(note: you will need to know the password associated with the keys to import them)
+
+By exporting and importing, you allow gpg to handle any version/format differences between differing versions of gpg on the different installs.
+
+You can use the --export option for your stored public keys in the same manner. (though I have found not including the public keys as a good way to purge all the old, non-used keys that have been collected over the years if you don't explicitly need them)
