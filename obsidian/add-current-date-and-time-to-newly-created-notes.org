@@ -1,0 +1,11 @@
+#+title: How to Add Current Date And Time To Newly Created Notes
+
+Make this the default template of your notes:
+
+#+begin_src yaml
+---
+date: "<% tp.file.creation_date('YYYY-MM-DD HH:mm:ss') %>"
+draft: true
+tags:
+---
+#+end_src
