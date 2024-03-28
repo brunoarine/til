@@ -1,0 +1,30 @@
+#+title: How to Install Dumpvdl2 On Arch Linux
+
+
+#+begin_src sh
+git clone https://github.com/szpajder/dumpvdl2.git
+cd dumpvdl2
+mkdir build
+cd build
+cmake ../
+#+end_src
+
+The program fails to compile in some systems with an error message like:
+
+#+begin_src
+-- Checking for module 'libacars-2>=2.1.0'
+--   Package 'libacars-2', required by 'virtual:world', not found
+#+end_src
+
+In this case, check whether you have installed =libacars= correctly, and ensure that =cmake= knows where to find =libacars='s make package (located in =/usr/local/lib=, a non-trivial directory for some Linux distros like Arch):
+
+#+begin_src sh
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig/
+#+end_src
+
+Then:
+
+#+begin_src sh
+make
+sudo make install
+#+end_src
