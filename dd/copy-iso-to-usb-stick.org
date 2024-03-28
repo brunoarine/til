@@ -1,0 +1,5 @@
+#+title: Copy ISO image To Usb Stick
+
+#+begin_src shell
+sudo dd if=lubuntu-20.04.3-desktop-amd64.iso of=/dev/sde bs=1M status=progress
+#+end_src
