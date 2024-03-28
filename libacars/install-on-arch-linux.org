@@ -1,0 +1,37 @@
+#+title: How to Install libacars On Arch Linux
+
+Dependencies:
+
+#+begin_src sh
+sudo pacman -S zlib libxml2
+#+end_src
+
+
+Cloning from github:
+
+#+begin_src sh
+git clone https://github.com/szpajder/libacars
+cd libacars
+#+end_src
+
+Compiling:
+
+#+begin_src sh
+mkdir build
+cd build
+cmake ../
+#+end_src
+
+And then:
+
+#+begin_src sh
+make
+sudo make install
+sudo ldconfig
+#+end_src
+
+For all effects, libacars is installed on =/usr/local/lib= (or =lib64=), which confuses some programs that depend on it (see [How to install dumpvdl2 on Arch Linux]). For this reason, you must either specify where the libs should be installed during compilation, or take the lazy route like me:
+
+#+begin_src shell
+echo "/usr/local/lib" > sudo tee /etc/ld.so.conf.d/usrlocal.conf
+#+end_src
