@@ -1,0 +1,9 @@
+#+title: Solve Wordle After One Attempt
+
+yellow letters: m e a
+
+green letters: o
+
+#+begin_src bash
+cat 7776palavras-2e.txt | grep "^[^ml][^el][^l][^ael]o$" | grep "a" | grep "e" | grep "m"
+#+end_src

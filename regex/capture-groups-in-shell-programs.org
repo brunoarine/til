@@ -1,0 +1,11 @@
+#+title: Capture Groups In Shell Programs
+
+Put the capture group inside matching parentheses, and reference each group by \1, \2, etc.
+
+Example:
+
+#+begin_src sh
+rename -n "s/Screenshot from ([0-9]*)/\1 -- screenshot"
+#+end_src
+
+will rename "Screenshot from 2012" to "2012 -- screenshot"
