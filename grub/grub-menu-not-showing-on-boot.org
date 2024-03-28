@@ -1,0 +1,7 @@
+#+title: Grub Menu Not Showing On Boot
+
+Update your grub config by setting =GRUB_TIMEOUT_STYLE=menu= on =/etc/default/grub= and then:
+
+#+begin_src shell
+sudo update-grub
+#+end_src
