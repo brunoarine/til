@@ -1,0 +1,9 @@
+#+title: Slow Startup On Gnome
+
+Possible solutions:
+
+* Uninstall flatpak
+
+#+begin_src shell
+sudo pacman -Rns flatpak
+#+end_src
