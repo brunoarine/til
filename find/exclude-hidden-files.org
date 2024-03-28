@@ -1,0 +1,5 @@
+#+title: Exclude Hidden Files
+
+#+begin_src shell
+find . -not -path '*/\.*'
+#+end_src

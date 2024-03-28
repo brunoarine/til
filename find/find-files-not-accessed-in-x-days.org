@@ -1,0 +1,5 @@
+#+title: Find Files Not Accessed In X Days
+
+#+begin_src bash
+find /home/you -iname "*.pdf" -atime +<number of days 60> -type f
+#+end_src
