@@ -1,0 +1,7 @@
+#+TITLE: How to edit a multiline command in the shell
+#+DATE: 2023-09-21 09:48:51
+
+Just press =CTRL + x + e= in either =bash= or =zsh=.
+The shell will open the default editor.
+Once you finish typing the command, save the file and exit.
+
