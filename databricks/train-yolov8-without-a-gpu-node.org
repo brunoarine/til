@@ -1,0 +1,27 @@
+#+TITLE: Training YOLOv8 on Databricks without a GPU
+#+DATE: 2023-06-09 12:13:21
+
+Though distributed computing is a first-class citizen on Databricks, sometimes you just want to run a quick experiment on a single node.
+Or maybe your Databricks cluster is CPU-only, and the framework you want to use doesn't support distributed CPU computation.
+The latter seems to be the case with YOLOv8.
+
+YOLOv8 runs on PyTorch, and PyTorch does support distributed CPU computing via =gloo= backend.
+But for reasons I still have to investigate, YOLOv8's training code seems to ignore the fact that a cluster could be CPU-only.
+
+YOLO's source code logic goes that if there's no environmental variable named =RANK=, then we are not running distributed.
+So far, so good.
+But then, it wrongly assumes that a distributed environment could only be running CUDA (see [[https://github.com/ultralytics/ultralytics/blob/e70de6dacb3bbe240c66f4702bf0a00742096b41/ultralytics/yolo/engine/trainer.py#L196][this loc]]).
+And since our Databricks cluster sets the =RANK= variable automatically (even though it may not be GPU-powered), RuntimeErrors ensue.
+
+Therefore, to train YOLOv8 single mode on Databricks, we have to trick it into believing that it's not running in a cluster.
+The way I found to do it was monkeypatching the =RANK= constant directly:
+
+#+begin_src python
+import ultralytics
+
+ultralytics.yolo.engine.trainer.RANK = -1
+
+model = ultralytics.YOLO("yolov8n.pt")
+model.train(data=DATA_DIR, task="detect", epochs=50)
+#+end_src
+
