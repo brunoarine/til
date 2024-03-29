@@ -1,0 +1,27 @@
+#+TITLE: How to set-up aspell on a per-project basis
+#+DATE: 2023-10-24 15:33:19
+
+If you wish to set-up =aspell= on a per-project basis, several variables have to be configured accordingly.
+
+The following procedure considers that your spellchecking engine of choice is =aspell=, and you're using =spell-fu= to show the typos in your buffer.
+
+The first step is to make sure you have =aspell= correctly installed in your system. Type =aspell -a -m= to check if it was installed correctly. If not, you can do it on Arch Linux like this:
+
+#+begin_src shell
+pacman -S aspell aspell-pt
+#+end_src
+
+The above command installs =aspell= along with its Portuguese dictionary.
+
+The second step is make sure you have added the =(spell +aspell)= line on your Doom Emacs =init.el= file. After that, create a file named =.dir-locals.el= in your project root, and add the following lines:
+
+#+begin_src elisp
+;;; Directory Local Variables            -*- no-byte-compile: t -*-
+;;; For more information see (info "(emacs) Directory Variables")
+
+((org-mode . (eval . (spell-fu-dictionary-add (spell-fu-get-ispell-dictionary "pt_BR")))))
+#+end_src
+
+Here, the dictionary language is set to Brazilian Portuguese.
+
+After these steps, you should start seeing misspelled words underlined in red. To navigate through them, press =] s= and =[ s= to move to the previous and next words, and then =z == to correct them.
