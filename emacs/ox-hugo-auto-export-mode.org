@@ -1,0 +1,27 @@
+#+TITLE: Ox-hugo auto-export mode with Doom Emacs
+#+DATE: 2023-10-22 19:59:45
+
+I've been trying to enable =ox-hugo='s auto-export mode for hours.
+The [[https://ox-hugo.scripter.co/doc/auto-export-on-saving/][official documentation]] instructs to add the following line on your =.dir-locals.el= file, if the file is already in the same directory as your Org files:
+
+#+begin_src elisp
+((org-mode . ((eval . (org-hugo-auto-export-mode)))))
+#+end_src
+
+If you already have something in your =.dir-locals.el= and want to ensure you're adding this extra line in the right place (and with the right number of parentheses), you can also type =M-x add-dir-local-variable=, choose =eval= and type =org-hugo-auto-export-mode=.
+
+The problem is that it didn't work for me.
+All variables are successfully loaded when I opened an Org file in that directory, but =org-hugo-auto-export-mode= was never enabled.
+
+Turns out the problem is a bug in =evil=, according to [[https://github.com/doomemacs/doomemacs/issues/2493][this ticket]], the package that lets you navigate Emacs with =vi= keybindings --- and which is signature feature of the Doom Emacs ecosystem.
+Henrik Lissner suggested, in the same ticket, a workaround. I've adapted the suggestion, and here's how to make auto-export work with Org files:
+
+#+begin_src elisp
+(setq-default enable-local-variables t)
+(defadvice! fix-local-vars (&rest _)
+  :before #'turn-on-evil-mode
+  (when (eq major-mode 'org-mode)
+    (hack-local-variables)))
+#+end_src
+
+Add the snippet above in Doom Emacs's =config.el= file.
