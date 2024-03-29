@@ -1,0 +1,25 @@
+#+TITLE: Multiple displays on i3
+#+DATE: 2024-02-13 12:24:13
+
+First, install =xrandr=. If you haven't done so (and are using Arch Linux or a derived distro):
+
+#+begin_src sh
+sudo pacman -S xrandr
+xrandr
+#+end_src
+
+The output will indicate which monitors are available. To activate the second screen, type the following command:
+
+#+begin_src sh
+xrandr --output $SECONDARY_DISPLAY --auto --right-of $PRIMARY_DISPLAY
+#+end_src
+
+A new workspace will be automatically instantiated in the second display.
+
+If you want to move containers between displays, add the following lines to your i3 config file:
+
+#+begin_src
+# move focused workspace between monitors
+bindsym $mod+Ctrl+greater move workspace to output right
+bindsym $mod+Ctrl+less move workspace to output left
+#+end_src
