@@ -1,0 +1,47 @@
+#+TITLE: Docker error while deploying an Azure ML endpoint locally
+#+DATE: 2024-01-12 11:40:35
+
+I've recently had to debug an attempt of deploying an Azure ML online endpoint.
+Unsurprisingly, Azure tends to spit out quite uninformative error messages when something breaks, so my best bet at tackling it was deploying my machine learning model locally, as [[https://learn.microsoft.com/en-us/azure/machine-learning/how-to-troubleshoot-online-endpoints?view=azureml-api-2&tabs=cli][suggested by Azure itself]].
+
+Following Azure's instructions, here's [[https://learn.microsoft.com/en-us/azure/machine-learning/how-to-troubleshoot-online-endpoints?view=azureml-api-2&tabs=cli#deploy-locally][how to deploy an endpoint locally]] using Azure CLI tools:
+
+#+begin_src bash
+az ml online-deployment create --endpoint-name <endpoint-name> -n <deployment-name> -f <spec_file.yaml> --local
+#+end_src
+
+However, I got the following error when running the command above on MacOS:
+
+#+begin_src
+Unexpected error verifying an endpoint with the provided name doesn't exist
+                        Full error can be found here:
+                        Please make sure Docker Engine is installed and running. https://docs.docker.com/engine/install/
+#+end_src
+
+I ran the same command again, but adding the =--debug= flag at the end, and found the culprit:
+
+#+begin_src
+  File "/Users/bruno.arine/.azure/cliextensions/ml/docker/transport/unixconn.py", line 27, in connect
+    sock.connect(self.unix_socket)
+FileNotFoundError: [Errno 2] No such file or directory
+#+end_src
+
+So that was the issue. I'm using =colima= to manage my containers on MacOS, and apparently, Azure's script is trying to connect to Docker but just can't find it.
+I solved the issue by first finding out which Docker endpoint Azure CLI should use, running =docker context ls=.
+This is what that command gave me:
+
+#+begin_src
+NAME            DESCRIPTION                             DOCKER ENDPOINT
+colima *        colima                                  unix:///Users/bruno.arine/.colima/default/docker.sock
+default         Current DOCKER_HOST based configuration unix:///var/run/docker.sock
+desktop-linux                                           unix:///Users/bruno.arine.docker/run/docker.sock
+#+end_src
+
+By specifying which endpoint to use, Azure CLI started to work as expected:
+
+#+begin_src bash
+DOCKER_HOST=unix:///Users/bruno.arine/.colima/default/docker.sock az ml online-endpoint create --local -f path_to_file.yaml
+#+end_src
+
+Try the command above in the terminal.
+If it succeeds, you'll get a JSON response.
