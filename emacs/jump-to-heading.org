@@ -1,0 +1,20 @@
+#+title: Jump To Heading on Emacs Org-mode
+#+DATE: 2024-03-29
+
+Today I learned (remembered, actually) that it's possible to jump directly to an Org heading by navigating a list of headings.
+The command responsible for this is =org-goto=.
+
+Nonetheless, =org-goto='s default behavior (incremental search) is a bit weird in my opinion.
+But there are ways to configure it, and switch to searching through the buffer's outline via completion:
+
+#+begin_src elisp
+(setq org-goto-interface 'outline-path-completion)
+#+end_src
+
+According to user Basil on Stackoverflow, users of completion packages like ido/ivy/helm will probably want to change the following setting in order to see the whole target path at once:
+
+#+begin_src elisp
+(setq org-outline-path-complete-in-steps nil)
+#+end_src
+
+I'm using vertico and it worked out of the box, without the above variable set to =nil=.
