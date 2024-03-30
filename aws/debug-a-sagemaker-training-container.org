@@ -1,0 +1,36 @@
+#+TITLE: How to debug an AWS SageMaker training container
+#+DATE: 2023-01-09 10:20:00
+
+This example uses environment variables. They are automatically picked up by =docker-composer= if you store them in a =.env= file in the same directory as the composer YAML file.
+
+1. Build the image locally.
+
+   #+begin_src bash
+docker build . -t ${IMAGE_NAME} --build-arg REGION=${AWS_REGION}
+   #+end_src
+
+2. Create a Docker composer configuration file like the one below. The =pdb= argument =-c continue= is necessary if you wish the container to run when launched. If omitted, it will ask for confirmation right from the start.
+
+#+begin_src yaml
+version: "2"
+
+services:
+  training:
+    build: ${DOCKERFILE_PATH}
+    image: ${IMAGE_NAME}
+    volumes:
+      - ${TRAIN_PATH}:/opt/ml/input/data/training
+      - ${TEST_PATH}:/opt/ml/input/data/testing
+      - ${MODEL_PATH}:/opt/ml/model  # after training, the container should store model artifacts here
+      - ${CODE_PATH}:/opt/ml/code  # only if you want to replace the code in the Docker image
+    command: python3 -m pdb -c continue train.py ${ARGS}
+    stdin_open: true
+    tty: true
+
+#+end_src
+
+3. Launch the training container with =docker-compose -f <path/to/docker-composer/file.yml> up=.
+
+4. Find the running container ID with =docker ps -a= and attach to it with =docker attach <container-id>=.
+
+See also: [[id:58d95eb3-3f43-4a19-9bb8-d6653c3cd56f][Python debugger pdb cheat sheet]]
