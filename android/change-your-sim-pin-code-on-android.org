@@ -1,0 +1,18 @@
+#+TITLE: How to change your SIM PIN code on Android
+#+DATE: 2024-03-30
+
+One of the most common tactics by phone burglars is to remove the SIM card from your phone and put it into another device, so they can recover the passwords from your account and, if you use SMS as a means of twp-factor authentication (not recommended), they can also retrieve the OTP codes. Therefore, changing your SIM PIN code is key to avoid SIM swaps if your phone is stolen.
+
+On Android:
+
+1) Tap Security -> Advanced Settings -> SIM card lock -> (select your SIM card if you have more than one)
+2) Toggle "Lock SIM card"
+3) Enter your default phone carrier SIM PIN. These are the codes for some Brazilian carriers:
+
+Vivo: 8486
+Claro: 3636
+TIM: 1010
+
+By doing this, every time you turn on your phone you'll need to enter the SIM PIN to unlock it.
+
+4) Back in the "SIM card lock settings", tap "Change SIM PIN", enter a new PIN code and write it down. *Do not forget this code!* If you lose this number, you won't be able to use your SIM chip anymore.
