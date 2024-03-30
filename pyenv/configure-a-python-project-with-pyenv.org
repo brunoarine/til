@@ -1,0 +1,39 @@
+#+TITLE: How to configure a Python project using Pyenv
+#+DATE: 2023-01-02 18:11:36
+
+First install the appropriate Python version:
+
+#+begin_src bash
+pyenv install <version>
+python local <version> (inside dir)
+#+end_src
+
+Then create a new environment like this:
+
+#+begin_src shell
+pyenv virtualenv <version> <project name>
+#+end_src
+
+Now inside the project's dir:
+
+#+begin_src shell
+pyenv local <project name>
+#+end_src
+
+Example:
+
+#+begin_src shell
+pyenv install 3.6.10
+pyenv global 3.6.10
+# If you ever want to go back to the system version of Python as the default, you can run this:
+# pyenv global system
+#+end_src
+
+For example, with =pyenv-virtualenv= from the project's root:
+
+#+begin_src shell
+pyenv install 3.7.7
+pyenv virtualenv 3.7.7 message-ranking
+pyenv local message-ranking
+pip install -r requirements.txt
+#+end_src
