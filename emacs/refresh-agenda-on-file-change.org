@@ -1,0 +1,20 @@
+#+TITLE: How to refresh Emacs agenda view on file change
+#+DATE: 2022-07-06
+
+Despite all the included batteries in Doom Emacs, I still wanted a way for the agenda view to refresh whenever I made a change to my agenda files.
+
+So I came up with the following snippet:
+
+#+begin_src elisp
+(defun my/redo-all-agenda-buffers ()
+  (interactive)
+  (dolist (buffer (buffer-list))
+    (when (derived-mode-p 'org-agenda-mode)
+      (org-agenda-maybe-redo))))
+
+(add-hook 'org-mode-hook
+          (lambda ()
+            (add-hook 'after-save-hook 'my/redo-all-agenda-buffers nil 'make-it-local)))
+#+end_src
+
+If you include this in your Emacs configuration file, next time you make a change to an Org file included in the agenda files list and save it, Emacs will rebuild the agenda view automatically.
