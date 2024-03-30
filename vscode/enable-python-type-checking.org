@@ -1,0 +1,44 @@
+#+TITLE: How to Enable Python Type Checking in VSCode
+#+DATE: 2022-06-26 22:39:50
+
+Dynamic typing is cool and convenient until a typo gives you hours of headache.
+In a project I have been working on recently, I accidentally typed an extra comma at the end of a line.
+What was clearly a typo ended up being read as a valid statement by the Python interpreter.
+
+# more
+
+#+begin_src python
+instance_type = "ml.c5.xlarge",  # this typo...
+#+end_src
+
+
+#+begin_src python
+instance_type = ("ml.c5.xlarge", None)  # ... was interpreted like this.
+#+end_src
+
+Even though the receiving function had type hints, my mistake went through unnoticed, blowing up much later in the form of an cryptic error message from the AWS API.
+
+Dynamically typed languages are an allure to many, myself included.
+The overhead of caring about variable types while coding is certainly a pain during project spikes and fast prototyping, both in academia and data science projects.
+That's why Python has informally become the _de facto_ standard for these areas.
+All thanks to its overly forgiving dynamically typed nature.
+
+But after I transitioned in my career and got saw myself in software developer roles, I started to grow fond of static typing and the safeguards it provides.
+I can't afford to let a typo ruin mission critical code.
+Working in production environments makes you rethink a lot of your life choices.
+Eventually, you'll prefer safety and peace of mind over convenience.
+That's what happens when you grow older.
+
+So, after much headache, I started to define all my Python functions with type hints.
+They were specified in [[https://peps.python.org/pep-0484/][PEP 484]] and introduced in Python 3.5, but until this date, type hinting still isn't mandatory.
+
+Type hinting is great way around Python's overly forgiving interpreter, but only if your IDE and/or language interpreter actually gives it a damn.
+And it won't, unless you take some measures.
+
+If you use VScode, the following parameter can be set to force type checking:
+
+#+begin_src json
+{
+  "python.analysis.typeCheckingMode": "basic"
+}
+#+end_src
