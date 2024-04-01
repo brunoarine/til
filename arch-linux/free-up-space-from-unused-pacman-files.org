@@ -1,0 +1,39 @@
+#+title: How to free up space from pacman's unused files
+
+Today I had no space remaining in the disk while I was upgrading my EndeavourOS system, so I had to look up for ways to free some space.
+
+The first idea was to do away with the cached =pacman= packages. It stores all packages you've downloaded recently, so it seems to be a good idea to run this command every now and then:
+
+#+begin_src sh
+sudo pacman -Sc
+#+end_src
+
+The command above cleans up cached packages that are no longer installed. That command alone freed up 22 GB in my case.
+
+** Clean up unused dependencies
+
+The next thing I tried was a tip from [[https://www.giorgosdimtsas.net/blog/how-to-free-up-disk-space-in-arch-linux/][Giorgos Dimtsas]] on how to remove unused dependencies.
+To my surprise, I learned that when you remove a package with =pacman=, its dependencies are not automatically deleted as well.
+
+You can check the unused packages by running the following command:
+
+#+begin_src sh
+sudo pacman -Qtdq
+#+end_src
+
+where:
+
+- =-Q= or =--query= queries the packages database
+- =-t= or =--unrequired= prints only packages that are neither required nor optionally required by any currently installed package
+- =-d= or =--deps= restricts output to packages installed as dependencies
+- =-q= or =--quiet= shows package names only
+
+By typing the command above, you can see which unused packages are still installed in your system.
+To remove them, you can plug the output of the command above onto =pacman='s command to remove packages, like this:
+
+#+begin_src sh
+sudo pacman -Rs $(pacman -Qtdq)
+#+end_src
+
+The =-s= or =--recursive= tells =pacman= to remove the specified package (or packages) and all of their dependencies, provided that they are not required by other packages and were not explicitly installed by the user.
+        
