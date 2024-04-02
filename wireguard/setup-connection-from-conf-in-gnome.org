@@ -1,0 +1,10 @@
+#+title: Setup a Wireguard connection from a .conf file in Gnome
+#+DATE: 2024-04-02
+
+At the time of this writing, Gnome's NetworkManager already supports Wireguard connections. But first, you have to install =wireguard-tools= as instructed by the [[https://wiki.archlinux.org/title/WireGuard][Arch Linux Wiki]].
+
+Strangely, the GUI doesn't have a means to import Wireguard's .conf files, but you can import them in the terminal:
+
+#+begin_src sh
+nmcli connection import type wireguard file path/to/your/wg.conf
+#+end_src
