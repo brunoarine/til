@@ -1,0 +1,10 @@
+#+title: How To Switch Screens Via Keyboard
+#+date: 2023-04-02
+
+Today I learned how to switch screens via keyboard on an Ugreen HDMI KVM switch.
+If your keyboard is connected to the switch's keyboard port, just press =Ctrl=, =Ctrl=, =Enter= (in sequence).
+
+This seems to be an undocumented feature, as I couldn't find any mention to it in the official documentation.
+I discovered this feature after accidentally pressing that sequence more often than desired.
+
+If I plug my keyboard on the general USB port instead of the keyboard-specific one, the switching doesn't work.
