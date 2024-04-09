@@ -1,0 +1,29 @@
+#+title: Launch a generic UDP listener using netcat
+#+DATE: 2024-04-02
+
+Today I learned a cool trick to test if a certain port in your router is open or not.
+
+I'm trying to get Wireguard correctly configured, and for that, I needed to open UDP port 51820 on my router.
+But for the life of me I can't figure out whether the problem is my Wireguard setup or the router.
+
+The first thing I want to do before looking into the Wireguard setup is to check the router.
+My internet provider is notorious for locking down things on the router (at the same time they enforce really shitty admin passwords -- go figure).
+To test it, first I shut down my Wireguard container:
+
+#+begin_src sh
+docker compose stop wg-easy
+#+end_src
+
+And then launched GNU =netcat= utility to listen on port 51820:
+
+#+begin_src sh
+nc -u -l -p 51820
+#+end_src
+
+Then, I tried to connect to it locally (i.e. using the server's LAN IP):
+
+#+begin_src sh
+nc -u $SERVER_IP 51820
+#+end_src
+
+To see if it works, I typed "Hi" and hit Enter. Presto! The message appeared on the server listener.
