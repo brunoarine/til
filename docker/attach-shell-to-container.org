@@ -1,0 +1,8 @@
+#+title: How to attach shell to a Docker container
+#+DATE: 2024-04-04
+
+Just type:
+
+#+begin_src sh
+docker exec -ti $container_name /bin/bash
+#+end_src
