@@ -1,0 +1,69 @@
+#+title: Fix Bad Resolution For Generic Display
+#+DATE: 2024-04-08
+
+I had to use an adapter so I could plug an old monitor with VGA ports only into a somewhat old graphic card with HDMI outputs.
+The adapter worked great, but because of it, my Linux machine could no longer identify the display nor its optimal resolution and frequency.
+I was stuck in a 1024x768 resolution.
+
+To fix that, first I had to go to the LG website and look up my monitor model (W1952TQ) to find out the correct settings.
+In there, I found the following specs:
+
+- Max resolution :: 1440 x 900 @ 75Hz
+- Vertical frequency :: 56 ~ 75 Hz
+- Horizontal frequency :: 28 ~ 83 Hz
+
+After that, I read somewhere that I should add these parameters to my =xorg.conf= file.
+But this machine is running Ubuntu, and there is no such file.
+So I had to type the following for the file to be created:
+
+#+begin_src
+nvidia-xconfig
+#+end_src
+
+After that a very basic =xorg.conf= is created inside =/etc/X11=.
+In that file, I added the following lines in the =Monitor= section:
+
+#+begin_src
+HorizSync 28.0-83.0
+VertRefresh 56.0-75.0
+#+end_src
+
+After that, I had to run =cvt= which is a helper program that generates the values that should be passed to =xrandr= to add the new resolution to the available resolutions:
+
+#+begin_src sh
+cvt 1440 900 75
+
+# The command returned the following line:
+## 1440x900 74.98 Hz (CVT 1.30MA) hsync: 70.64 kHz; pclk: 136.75 MHz
+# Modeline "1440x900_75.00" 136.75 1440 1536 1688 1936 900 903 909 943 -hsync +vsync
+#+end_src
+
+Which returned
+
+After that, I created a shell script with the following content:
+
+#+begin_src bash
+#!/bin/bash
+xrandr --newmode "1440x900_75.00" 136.75 1440 1536 1688 1936 900 903 909 943 -hsync +vsync
+xrandr --addmode DVI-I-0 1440x900_75.00
+xrandr --output DVI-I-0 --mode 1440x900_75.00
+#+end_src
+
+I also had to give this script execution permissions:
+
+#+begin_src sh
+chmod +x autoxrandr.sh
+#+end_src
+
+Now that we have all the necessary commands in a script, I added it to the list of auto-run commands upon Gnome logon by creating a .desktop file to =~/.config/autostart=:
+
+#+begin_src
+[Desktop Entry]
+Name=Auto Xrandr Script
+Exec=/path/to/the/script
+Terminal=false
+Type=Application
+Hidden=true
+#+end_src
+
+Now, whenever I log in to Gnome, the script above will run and will set the monitor with the correct resolution.
